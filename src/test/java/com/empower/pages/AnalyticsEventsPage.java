@@ -16,6 +16,7 @@ public class AnalyticsEventsPage {
     private Map<String, Object> capturedEvent;
     private String elementText;
     private String elementTitle;
+    private String elementLabel;
 
 
     private static final String PRIMARY_BUTTON = "[data-once='click-primary-button empulsify-button-ripple']";
@@ -49,6 +50,8 @@ public class AnalyticsEventsPage {
     private static final String CYBERSECURITY_LINK = "div:nth-of-type(1) > .flex.flex-col.gap-4 > li:nth-of-type(1) > .leading-6";
     private static final String ABOUTUS_LINK = "div:nth-of-type(3) > .flex.flex-col.gap-4 > li:nth-of-type(1) > .leading-6";
     private static final String CONTACTUS_LINK = "div:nth-of-type(4) > .flex.flex-col.gap-4  .leading-6";
+    private static final String LOGIN_BUTTON = "[data-once='nav-main-login-register-link click-secondary-light-button empulsify-button-ripple'] [class]";
+    private static final String REGISTER_BUTTON = "[data-once='nav-main-login-register-link click-primary-button empulsify-button-ripple']";
 
 
 
@@ -122,6 +125,8 @@ public class AnalyticsEventsPage {
             case "cybersecurityButton" -> page.locator(CYBERSECURITY_LINK);
             case "aboutUsButton" -> page.locator(ABOUTUS_LINK);
             case "contactUsButton" -> page.locator(CONTACTUS_LINK);
+            case "loginButton" -> page.locator(LOGIN_BUTTON);
+            case "registerButton" -> page.locator(REGISTER_BUTTON);
 
 
 
@@ -148,6 +153,12 @@ public class AnalyticsEventsPage {
         return this;
     }
 
+    public AnalyticsEventsPage getLabelOfElement() {
+        elementLabel = currentElement.getAttribute("aria-label");
+//        if (elementTitle == null) elementTitle = "";
+
+        return this;
+    }
 
     public AnalyticsEventsPage clickAndCaptureElement(String eventType, String eventName) {
         capturedEvent = DataLayerUtil.clickAndCaptureEvent(page, currentElement, eventType, eventName);
@@ -155,6 +166,7 @@ public class AnalyticsEventsPage {
 
         if (elementText != null) capturedEvent.put("expectedElementText", elementText);
         if (elementTitle != null) capturedEvent.put("expectedElementTitle", elementTitle);
+        if (elementLabel != null) capturedEvent.put("expectedElementLabel", elementLabel);
 
         return this;
     }

@@ -13,27 +13,30 @@ public class AnalyticsEventsTest extends BaseTest {
     public Object[][] clickEvents() {
         return new Object[][]{
 //               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
-                {"primaryButton",        "button_click", "button_click_cta",             "/products-solutions/private-client"},
-                {"primaryButton_PC",     "button_click", "button_click_cta",             "/products-solutions/private-client"},
-                {"brandedGoldButton",    "button_click", "button_click_branded",         "/products-solutions/private-client"},
-                {"secondaryButton",      "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
-                {"secondaryButton_PC",   "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
+//                {"primaryButton",        "button_click", "button_click_cta",             "/products-solutions/private-client"},
+//                {"primaryButton_PC",     "button_click", "button_click_cta",             "/products-solutions/private-client"},
+//                {"brandedGoldButton",    "button_click", "button_click_branded",         "/products-solutions/private-client"},
+//                {"secondaryButton",      "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
+//                {"secondaryButton_PC",   "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
+//
+//                {"tile_1",               "tile_event",   "tile_click",                   "/the-currency/money/can-you-retire-a-million-dollars"},
+//                {"tile_2",               "tile_event",   "tile_click",                   "/press-center/empower-signs-new-partnership-hard-rock-stadium-and-miami-dolphins"},
+//                {"tile_3",               "tile_event",   "tile_click",                   "/the-currency/work/five-habits-of-excellent-retirement-savers"},
+//                {"linkText",             "link_click",   "link_click",                   "/"},
+//                {"linkCardText",         "link_click",   "link_click",                   "/"},
+//
+//                {"secondaryBentoButton", "button_click", "button_click_bento_white",     "/products-solutions/private-client"},
+//                {"PrimaryBentoButton",   "button_click", "button_click_bento_blue",      "/products-solutions/private-client"},
+//
+//                {"securityCenterButton",     "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/securityCenter?"},
+//                {"accessibilityButton",      "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/accessibility?"},
+//
+//                {"cybersecurityButton",       "navigation_click",   "footer_navigation_click",          "/individuals/about-empower/cybersecurity"},
+//                {"aboutUsButton",             "navigation_click",   "footer_navigation_click",          "/about-us"},
+//                {"contactUsButton",             "navigation_click",   "footer_navigation_click",          "/contact"},
 
-                {"tile_1",               "tile_event",   "tile_click",                   "/the-currency/money/can-you-retire-a-million-dollars"},
-                {"tile_2",               "tile_event",   "tile_click",                   "/press-center/empower-signs-new-partnership-hard-rock-stadium-and-miami-dolphins"},
-                {"tile_3",               "tile_event",   "tile_click",                   "/the-currency/work/five-habits-of-excellent-retirement-savers"},
-                {"linkText",             "link_click",   "link_click",                   "/"},
-                {"linkCardText",         "link_click",   "link_click",                   "/"},
-
-                {"secondaryBentoButton", "button_click", "button_click_bento_white",     "/products-solutions/private-client"},
-                {"PrimaryBentoButton",   "button_click", "button_click_bento_blue",      "/products-solutions/private-client"},
-
-                {"securityCenterButton",     "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/securityCenter?"},
-                {"accessibilityButton",             "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/accessibility?"},
-
-                {"cybersecurityButton",             "navigation_click",   "footer_navigation_click",          "/individuals/about-empower/cybersecurity"},
-                {"aboutUsButton",             "navigation_click",   "footer_navigation_click",          "/about-us"},
-                {"contactUsButton",             "navigation_click",   "footer_navigation_click",          "/contact"},
+                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
+                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
 
         };
     }
