@@ -44,7 +44,11 @@ public class AnalyticsEventsPage {
     private static final String INSTAGRAM_LOGO = "a[title='Instagram']";
     private static final String YOUTUBE_LOGO = "a[title='YouTube']";
     private static final String TIKTOK_LOGO = ".block.h-6.icon-social.icon-social-tiktok.indent-\\[-1000px\\].w-6";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
+    private static final String SEC_LINK = "[class] [class='flex flex-row gap-x-3']:nth-of-type(1) [data-once]";
+    private static final String ACCESSIBILITY_LINK = "[class] [class='flex flex-row gap-x-3']:nth-of-type(2) [data-once]";
+    private static final String CYBERSECURITY_LINK = "div:nth-of-type(1) > .flex.flex-col.gap-4 > li:nth-of-type(1) > .leading-6";
+    private static final String ABOUTUS_LINK = "div:nth-of-type(3) > .flex.flex-col.gap-4 > li:nth-of-type(1) > .leading-6";
+    private static final String CONTACTUS_LINK = "div:nth-of-type(4) > .flex.flex-col.gap-4  .leading-6";
 
 
 
@@ -113,6 +117,11 @@ public class AnalyticsEventsPage {
             case "instagramButton" -> page.locator(INSTAGRAM_LOGO);
             case "youtubeButton" -> page.locator(YOUTUBE_LOGO);
             case "tiktokButton" -> page.locator(TIKTOK_LOGO);
+            case "securityCenterButton" -> page.locator(SEC_LINK);
+            case "accessibilityButton" -> page.locator(ACCESSIBILITY_LINK);
+            case "cybersecurityButton" -> page.locator(CYBERSECURITY_LINK);
+            case "aboutUsButton" -> page.locator(ABOUTUS_LINK);
+            case "contactUsButton" -> page.locator(CONTACTUS_LINK);
 
 
 
