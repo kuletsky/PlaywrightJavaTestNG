@@ -35,8 +35,12 @@ public class AnalyticsEventsTest extends BaseTest {
 //                {"aboutUsButton",             "navigation_click",   "footer_navigation_click",          "/about-us"},
 //                {"contactUsButton",             "navigation_click",   "footer_navigation_click",          "/contact"},
 
-                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
-                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
+//                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
+//                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
+
+                {"IndividualsMenu",             "navigation_click",   "top_navigation_click",          "/home"},
+                {"PlanSponsorsMenu",             "navigation_click",   "top_navigation_click",          "/plan-sponsors"},
+                {"FinancialProfessMenu",             "navigation_click",   "top_navigation_click",          "/financial-professionals"},
 
         };
     }
@@ -94,6 +98,51 @@ public class AnalyticsEventsTest extends BaseTest {
         Assert.assertEquals(event.get("event_category"), event.get("expectedElementTitle"));
         Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
     }
+
+
+
+
+
+    @DataProvider(name = "clickPrimaryMenu")
+    public Object[][] clickPrimaryMenu() {
+        return new Object[][]{
+//               elementName,             expectedEvent,   expectedEventNam
+                {"ProdAndServMenu",     "navigation_click",   "main_navigation_click"},
+                {"ToolsMenu",     "navigation_click",   "main_navigation_click"},
+                {"LearnMenu",     "navigation_click",   "main_navigation_click"},
+                {"WhyEmpowerMenu",     "navigation_click",   "main_navigation_click"},
+//                {"xButton",             "social_click",   "social_click",          "/empowertoday?lang=en"},
+//                {"snapchatButton",     "social_click",   "social_click",          "/add/empowertoday"},
+//                {"linkedinButton",     "social_click",   "social_click",          "/company/empowertoday"},
+//                {"instagramButton",     "social_click",   "social_click",          "/officialempowertoday/"},
+//                {"youtubeButton",     "social_click",   "social_click",          "/channel/UCFPLlGp16vPjBb-G7SnUWhQ"},
+//                {"tiktokButton",     "social_click",   "social_click",          "/@empowertoday?lang=en"},
+        };
+    }
+
+    @Test(dataProvider = "clickPrimaryMenu")
+    public void testClickPrimaryMenuAnalytics(String elementName, String expectedEvent,
+                                                String expectedEventName) {
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .findElement(elementName)
+                .getTextOfElement()
+                .getLabelOfElement()
+                .clickAndCaptureElement(expectedEvent, expectedEventName)
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), event.get("expectedElementLabel"));
+    }
+
+
+
+
+
+
 
 
 

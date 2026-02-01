@@ -52,6 +52,13 @@ public class AnalyticsEventsPage {
     private static final String CONTACTUS_LINK = "div:nth-of-type(4) > .flex.flex-col.gap-4  .leading-6";
     private static final String LOGIN_BUTTON = "[data-once='nav-main-login-register-link click-secondary-light-button empulsify-button-ripple'] [class]";
     private static final String REGISTER_BUTTON = "[data-once='nav-main-login-register-link click-primary-button empulsify-button-ripple']";
+    private static final String PRODADNDSERV_MENU = "[aria-label='Products & Solutions']";
+    private static final String TOOLS_MENU = "[aria-label='Tools']";
+    private static final String LEARN_MENU = "[aria-label='Learn']";
+    private static final String WHYEMPOWER_MENU = "[aria-label='Why Empower']";
+    private static final String INDIVIDUALS_MENU = "[data-drupal-link-system-path='node\\/12631']";
+    private static final String PLANSPONSORS_MENU = "li:nth-of-type(2) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
+    private static final String FINANCIALPROFESS_MENU = "li:nth-of-type(3) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
 
 
 
@@ -127,6 +134,13 @@ public class AnalyticsEventsPage {
             case "contactUsButton" -> page.locator(CONTACTUS_LINK);
             case "loginButton" -> page.locator(LOGIN_BUTTON);
             case "registerButton" -> page.locator(REGISTER_BUTTON);
+            case "ProdAndServMenu" -> page.locator(PRODADNDSERV_MENU);
+            case "ToolsMenu" -> page.locator(TOOLS_MENU);
+            case "LearnMenu" -> page.locator(LEARN_MENU);
+            case "WhyEmpowerMenu" -> page.locator(WHYEMPOWER_MENU);
+            case "IndividualsMenu" -> page.locator(INDIVIDUALS_MENU);
+            case "PlanSponsorsMenu" -> page.locator(PLANSPONSORS_MENU);
+            case "FinancialProfessMenu" -> page.locator(FINANCIALPROFESS_MENU);
 
 
 
