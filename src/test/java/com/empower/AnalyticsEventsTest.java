@@ -49,6 +49,38 @@ public class AnalyticsEventsTest extends BaseTest {
 
 
 
+    @DataProvider(name = "clickSocialButtons")
+    public Object[][] clickSocialButtons() {
+        return new Object[][]{
+//               elementName,             expectedEvent,   expectedEventNam        expectedEventDetail
+                {"facebookButton",     "social_click",   "social_click",          "/officialempowertoday"},
+                {"xButton",             "social_click",   "social_click",          "/empowertoday?lang=en"},
+                {"snapchatButton",     "social_click",   "social_click",          "/add/empowertoday"},
+                {"linkedinButton",     "social_click",   "social_click",          "/company/empowertoday"},
+                {"instagramButton",     "social_click",   "social_click",          "/officialempowertoday/"},
+                {"youtubeButton",     "social_click",   "social_click",          "/channel/UCFPLlGp16vPjBb-G7SnUWhQ"},
+                {"tiktokButton",     "social_click",   "social_click",          "/@empowertoday?lang=en"},
+        };
+    }
+
+    @Test(dataProvider = "clickSocialButtons")
+    public void testClickSocialButtonsAnalytics(String elementName, String expectedEvent,
+                                                String expectedEventName, String expectedEventDetail) {
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .findElement(elementName)
+                .getTitleOfElement()
+                .clickAndCaptureElement(expectedEvent, expectedEventName)
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementTitle"));
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
+    }
+
+
 
     @DataProvider(name = "clickWithSetCategory")
     public Object[][] clickWithSetCategory() {
@@ -76,6 +108,7 @@ public class AnalyticsEventsTest extends BaseTest {
         Assert.assertEquals(event.get("event_category"), expectedEventCategory);
         Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
     }
+
 
 
 

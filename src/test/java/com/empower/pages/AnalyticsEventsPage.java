@@ -37,12 +37,13 @@ public class AnalyticsEventsPage {
     private static final String DOWNLOAD_APP_STORE = "[data-once='click-app-store-icon-apple'] .svg";
     private static final String DOWNLOAD_GOOGLE_PLAY = "[data-once='click-app-store-icon-google'] .svg";
     private static final String EMPOWER_LOGO = ".empower-logo";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
-//    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
+    private static final String FACEBOOK_LOGO = "a[title='Facebook']";
+    private static final String X_LOGO = "a[title='X (fka Twitter)']";
+    private static final String SNAPCHAT_LOGO = "a[title='Snapchat']";
+    private static final String LINKEDIN_LOGO = "a[title='LinkedIn']";
+    private static final String INSTAGRAM_LOGO = "a[title='Instagram']";
+    private static final String YOUTUBE_LOGO = "a[title='YouTube']";
+    private static final String TIKTOK_LOGO = ".block.h-6.icon-social.icon-social-tiktok.indent-\\[-1000px\\].w-6";
 //    private static final String DOWNLOAD_GOOGLE_PLAY1 = "";
 
 
@@ -105,6 +106,13 @@ public class AnalyticsEventsPage {
             case "downloadAppStore" -> page.locator(DOWNLOAD_APP_STORE);
             case "downloadGooglePlay" -> page.locator(DOWNLOAD_GOOGLE_PLAY);
             case "empowerLogo" -> page.locator(EMPOWER_LOGO);
+            case "facebookButton" -> page.locator(FACEBOOK_LOGO);
+            case "xButton" -> page.locator(X_LOGO);
+            case "snapchatButton" -> page.locator(SNAPCHAT_LOGO);
+            case "linkedinButton" -> page.locator(LINKEDIN_LOGO);
+            case "instagramButton" -> page.locator(INSTAGRAM_LOGO);
+            case "youtubeButton" -> page.locator(YOUTUBE_LOGO);
+            case "tiktokButton" -> page.locator(TIKTOK_LOGO);
 
 
 
@@ -126,6 +134,7 @@ public class AnalyticsEventsPage {
 
     public AnalyticsEventsPage getTitleOfElement() {
         elementTitle = currentElement.getAttribute("title");
+        if (elementTitle == null) elementTitle = "";
 
         return this;
     }
