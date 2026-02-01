@@ -7,8 +7,6 @@ import com.microsoft.playwright.Page;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.empower.utils.DataLayerUtil.clickAndCaptureEvent;
-
 public class AnalyticsEventsPage {
     private final Page page;
     private final static String ANALYTICS_PAGE = "https://empwrretiremtstg.prod.acquia-sites.com/empulsify/tp-analytics-events-empulsify";
@@ -61,6 +59,10 @@ public class AnalyticsEventsPage {
     private static final String FINANCIALPROFESS_MENU = "li:nth-of-type(3) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String EXPENDSUBMENU_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
     private static final String WEALTH_MANAGEMENT_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
+    private static final String PRIVET_CLIENT_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(1) [role]";
+    private static final String PERSONAL_STRATEGY_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(2) [role]";
+    private static final String HIGH_YIELD_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(2) > a[role='menuitem']";
+    private static final String ROLLOVER_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(3) > a[role='menuitem']";
 
 
 
@@ -68,36 +70,6 @@ public class AnalyticsEventsPage {
     public AnalyticsEventsPage(Page page) {
         this.page = page;
         page.navigate(ANALYTICS_PAGE);
-    }
-
-    public Map<String, Object> clickAndCaptureEventOfPrimaryButton(String eventType, String eventName) {
-        Locator buttonLocator = page.locator("[data-once='click-primary-button empulsify-button-ripple']").nth(0);
-        String buttonText = buttonLocator.textContent().trim();
-
-        Map<String, Object> responseMap = clickAndCaptureEvent(page, buttonLocator, eventType, eventName);
-        responseMap.put("buttonText", buttonText);
-
-        return responseMap;
-    }
-
-    public Map<String, Object> clickAndCaptureEventOfPrimaryButton_PC(String eventType, String eventName) {
-        Locator buttonLocator = page.locator("[data-once='click-primary-button empulsify-button-ripple']").nth(1);
-        String buttonText = buttonLocator.textContent().trim();
-
-        Map<String, Object> responseMap = clickAndCaptureEvent(page, buttonLocator, eventType, eventName);
-        responseMap.put("buttonText", buttonText);
-
-        return responseMap;
-    }
-
-    public Map<String, Object> clickAndCaptureEventOfBrandedGoldenBotton(String eventType, String eventName) {
-        Locator buttonLocator = page.locator(".layout__region.layout__region--second .branded-btn");
-        String buttonText = buttonLocator.textContent().trim();
-
-        Map<String, Object> responseMap = clickAndCaptureEvent(page, buttonLocator, eventType, eventName);
-        responseMap.put("buttonText", buttonText);
-
-        return responseMap;
     }
 
     public AnalyticsEventsPage findElement(String elementName) {
@@ -144,7 +116,11 @@ public class AnalyticsEventsPage {
             case "PlanSponsorsMenu" -> page.locator(PLANSPONSORS_MENU);
             case "FinancialProfessMenu" -> page.locator(FINANCIALPROFESS_MENU);
             case "expendSubmenuMain" -> page.locator(EXPENDSUBMENU_MENU);
-            case "wealthManagement" -> page.locator(WEALTH_MANAGEMENT_MENU);
+            case "wealthManagementMenu" -> page.locator(WEALTH_MANAGEMENT_MENU);
+            case "privetClientMenu" -> page.locator(PRIVET_CLIENT_MENU);
+            case "personalStrategyMenu" -> page.locator(PERSONAL_STRATEGY_MENU);
+            case "highYieldMenu" -> page.locator(HIGH_YIELD_MENU);
+            case "rolloverMenu" -> page.locator(ROLLOVER_MENU);
 
 
 
@@ -189,12 +165,9 @@ public class AnalyticsEventsPage {
         return this;
     }
 
-    public AnalyticsEventsPage clickAndCaptureElementWithText(String eventType, String eventName) {
-        clickAndCaptureElement(eventType, eventName);
-        capturedEvent.put("expectedElementText", elementText);
 
-        return this;
-    }
+
+
 
 
     public Map<String, Object> getEvent() {
@@ -209,6 +182,19 @@ public class AnalyticsEventsPage {
 
     public AnalyticsEventsPage clickProdAndServiceMenu() {
         page.locator(PROD_AND_SERV_MENU).click();
+
+        return this;
+    }
+
+    public AnalyticsEventsPage expandFAQ() {
+        page.locator(FAQ_EXPAND_CONTRACT).click();
+
+        return this;
+    }
+
+
+    public AnalyticsEventsPage clickWealthManagementSubmenu() {
+        page.locator(WEALTH_MANAGEMENT_MENU).click();
 
         return this;
     }

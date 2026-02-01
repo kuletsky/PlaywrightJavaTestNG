@@ -13,35 +13,35 @@ public class AnalyticsEventsTest extends BaseTest {
     public Object[][] clickEvents() {
         return new Object[][]{
 //               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
-//                {"primaryButton",        "button_click", "button_click_cta",             "/products-solutions/private-client"},
-//                {"primaryButton_PC",     "button_click", "button_click_cta",             "/products-solutions/private-client"},
-//                {"brandedGoldButton",    "button_click", "button_click_branded",         "/products-solutions/private-client"},
-//                {"secondaryButton",      "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
-//                {"secondaryButton_PC",   "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
-//
-//                {"tile_1",               "tile_event",   "tile_click",                   "/the-currency/money/can-you-retire-a-million-dollars"},
-//                {"tile_2",               "tile_event",   "tile_click",                   "/press-center/empower-signs-new-partnership-hard-rock-stadium-and-miami-dolphins"},
-//                {"tile_3",               "tile_event",   "tile_click",                   "/the-currency/work/five-habits-of-excellent-retirement-savers"},
-//                {"linkText",             "link_click",   "link_click",                   "/"},
-//                {"linkCardText",         "link_click",   "link_click",                   "/"},
-//
-//                {"secondaryBentoButton", "button_click", "button_click_bento_white",     "/products-solutions/private-client"},
-//                {"PrimaryBentoButton",   "button_click", "button_click_bento_blue",      "/products-solutions/private-client"},
-//
-//                {"securityCenterButton",     "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/securityCenter?"},
-//                {"accessibilityButton",      "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/accessibility?"},
-//
-//                {"cybersecurityButton",       "navigation_click",   "footer_navigation_click",          "/individuals/about-empower/cybersecurity"},
-//                {"aboutUsButton",             "navigation_click",   "footer_navigation_click",          "/about-us"},
-//                {"contactUsButton",             "navigation_click",   "footer_navigation_click",          "/contact"},
+                {"primaryButton",        "button_click", "button_click_cta",             "/products-solutions/private-client"},
+                {"primaryButton_PC",     "button_click", "button_click_cta",             "/products-solutions/private-client"},
+                {"brandedGoldButton",    "button_click", "button_click_branded",         "/products-solutions/private-client"},
+                {"secondaryButton",      "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
+                {"secondaryButton_PC",   "button_click", "button_click_secondary_white", "/products-solutions/private-client"},
 
-//                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
-//                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
+                {"tile_1",               "tile_event",   "tile_click",                   "/the-currency/money/can-you-retire-a-million-dollars"},
+                {"tile_2",               "tile_event",   "tile_click",                   "/press-center/empower-signs-new-partnership-hard-rock-stadium-and-miami-dolphins"},
+                {"tile_3",               "tile_event",   "tile_click",                   "/the-currency/work/five-habits-of-excellent-retirement-savers"},
+                {"linkText",             "link_click",   "link_click",                   "/"},
+                {"linkCardText",         "link_click",   "link_click",                   "/"},
+
+                {"secondaryBentoButton", "button_click", "button_click_bento_white",     "/products-solutions/private-client"},
+                {"PrimaryBentoButton",   "button_click", "button_click_bento_blue",      "/products-solutions/private-client"},
+
+                {"securityCenterButton",     "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/securityCenter?"},
+                {"accessibilityButton",      "navigation_click",   "footer_sub_navigation_click",          "/participant/#/articles/accessibility?"},
+
+                {"cybersecurityButton",       "navigation_click",   "footer_navigation_click",          "/individuals/about-empower/cybersecurity"},
+                {"aboutUsButton",             "navigation_click",   "footer_navigation_click",          "/about-us"},
+                {"contactUsButton",             "navigation_click",   "footer_navigation_click",          "/contact"},
+
+                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
+                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
 
                 //Main navigation - Contextual Menu
-//                {"IndividualsMenu",             "navigation_click",   "top_navigation_click",          "/home"},
-//                {"PlanSponsorsMenu",             "navigation_click",   "top_navigation_click",          "/plan-sponsors"},
-//                {"FinancialProfessMenu",             "navigation_click",   "top_navigation_click",          "/financial-professionals"},
+                {"IndividualsMenu",             "navigation_click",   "top_navigation_click",          "/home"},
+                {"PlanSponsorsMenu",             "navigation_click",   "top_navigation_click",          "/plan-sponsors"},
+                {"FinancialProfessMenu",             "navigation_click",   "top_navigation_click",          "/financial-professionals"},
 
                 //Main navigation - expand/collapse submenuMain navigation
                 {"expendSubmenuMain",             "navigation_click",   "sub_navigation_click",          "Expand"},
@@ -49,7 +49,6 @@ public class AnalyticsEventsTest extends BaseTest {
 
         };
     }
-
     @Test(dataProvider = "clickEvents")
     public void testClickAnalytics(String elementName, String expectedEvent,
                                    String expectedEventName, String expectedEventDetail) {
@@ -86,7 +85,6 @@ public class AnalyticsEventsTest extends BaseTest {
                 {"tiktokButton",     "social_click",   "social_click",          "/@empowertoday?lang=en"},
         };
     }
-
     @Test(dataProvider = "clickSocialButtons")
     public void testClickSocialButtonsAnalytics(String elementName, String expectedEvent,
                                                 String expectedEventName, String expectedEventDetail) {
@@ -116,15 +114,8 @@ public class AnalyticsEventsTest extends BaseTest {
                 {"ToolsMenu",     "navigation_click",   "main_navigation_click"},
                 {"LearnMenu",     "navigation_click",   "main_navigation_click"},
                 {"WhyEmpowerMenu",     "navigation_click",   "main_navigation_click"},
-//                {"xButton",             "social_click",   "social_click",          "/empowertoday?lang=en"},
-//                {"snapchatButton",     "social_click",   "social_click",          "/add/empowertoday"},
-//                {"linkedinButton",     "social_click",   "social_click",          "/company/empowertoday"},
-//                {"instagramButton",     "social_click",   "social_click",          "/officialempowertoday/"},
-//                {"youtubeButton",     "social_click",   "social_click",          "/channel/UCFPLlGp16vPjBb-G7SnUWhQ"},
-//                {"tiktokButton",     "social_click",   "social_click",          "/@empowertoday?lang=en"},
         };
     }
-
     @Test(dataProvider = "clickPrimaryMenu")
     public void testClickPrimaryMenuAnalytics(String elementName, String expectedEvent,
                                                 String expectedEventName) {
@@ -155,17 +146,16 @@ public class AnalyticsEventsTest extends BaseTest {
     public Object[][] clickWithSetCategory() {
         return new Object[][]{
 //               elementName,             expectedEvent,   expectedEventName,         expectedEventCategory         expectedEventDetail
-//                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
-//                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
-//                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
+                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
+                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
+                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
 
                 //Recommendation tiles/tools carousel
-//                {"carouselNext",          "tile_event",   "tile_move",            "prev_next",            ""},
+                {"carouselNext",          "tile_event",   "tile_move",            "prev_next",            ""},
                 {"carouselPrev",          "tile_event",   "tile_move",            "prev_next",            ""},
 
         };
     }
-
     @Test(dataProvider = "clickWithSetCategory")
     public void testClickWithSetCategoryAnalytics(String elementName, String expectedEvent,
                                                   String expectedEventName, String expectedEventCategory, String expectedEventDetail) {
@@ -182,41 +172,6 @@ public class AnalyticsEventsTest extends BaseTest {
         Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
     }
 
-
-
-
-
-//    @Test
-//    public void testClickCarouselNextAnalytics() {
-//        String elementName = "carouselNext";
-//
-//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-//                .findElement(elementName)
-//                .clickAndCaptureElement("tile_event", "tile_move")
-//                .getEvent();
-//
-//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-//        Assert.assertEquals(event.get("event"), "tile_event");
-//        Assert.assertEquals(event.get("event_name"), "tile_move");
-//        Assert.assertEquals(event.get("event_category"), "prev_next");
-//        Assert.assertEquals(event.get("event_detail"), "");
-//    }
-//
-//    @Test
-//    public void testClickCarouselPrevAnalytics() {
-//        String elementName = "carouselPrev";
-//
-//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-//                .findElement(elementName)
-//                .clickAndCaptureElement("tile_event", "tile_move")
-//                .getEvent();
-//
-//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-//        Assert.assertEquals(event.get("event"), "tile_event");
-//        Assert.assertEquals(event.get("event_name"), "tile_move");
-//        Assert.assertEquals(event.get("event_category"), "prev_next");
-//        Assert.assertEquals(event.get("event_detail"), "");
-//    }
 
 
     @Test
@@ -236,11 +191,12 @@ public class AnalyticsEventsTest extends BaseTest {
         Assert.assertEquals(event.get("event_detail"), event.get("expectedElementText"));
     }
 
-    @Test(dependsOnMethods = "testClickFAQExpendAnalytics")
+    @Test
     public void testClickFAQContractAnalytics() {
         String elementName = "faqExpendContract";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .expandFAQ()
                 .findElement(elementName)
                 .getTextOfElement()
                 .clickAndCaptureElement("expand_contract", "expand_contract")
@@ -259,41 +215,66 @@ public class AnalyticsEventsTest extends BaseTest {
 
 
 
-    @Test
-    public void testClickSubmenuMainExpendAnalytics() {
-        String elementName = "wealthManagement";
 
+    @DataProvider(name = "clickMenuEvents")
+    public Object[][] clickMenuEvents() {
+        return new Object[][]{
+//               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
+                {"wealthManagementMenu",     "navigation_click",   "sub_navigation_click",         "Expand"},
+                {"highYieldMenu",     "navigation_click",   "navigation_click",         "/cash"},
+                {"rolloverMenu",     "navigation_click",   "navigation_click",         "/products-solutions/rollover"},
+
+        };
+    }
+    @Test(dataProvider = "clickMenuEvents")
+    public void testClickMenuAndCollapseAnalytics(String elementName, String expectedEvent,
+                                                     String expectedEventName, String expectedEventDetail) {
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
                 .clickProdAndServiceMenu()
                 .findElement(elementName)
                 .getTextOfElement()
-                .clickAndCaptureElement("navigation_click", "sub_navigation_click")
+                .clickAndCaptureElement(expectedEvent,  expectedEventName)
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
-        Assert.assertEquals(event.get("event"), "navigation_click");
-        Assert.assertEquals(event.get("event_name"), "sub_navigation_click");
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
         Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
-        Assert.assertEquals(event.get("event_detail"), "Expand");
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
     }
 
-    @Test(dependsOnMethods = "testClickSubmenuMainExpendAnalytics")
-    public void testClickSubmenuCollapseAnalytics() {
-        String elementName = "wealthManagement";
 
+
+
+
+
+
+    @DataProvider(name = "clickSubmenuEvents")
+    public Object[][] clickSubmenuEvents() {
+        return new Object[][]{
+//               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
+                {"wealthManagementMenu",     "navigation_click",   "sub_navigation_click",         "Expand"},
+                {"privetClientMenu",           "navigation_click",   "navigation_click",         "/products-solutions/private-client"},
+                {"personalStrategyMenu",           "navigation_click",   "navigation_click",         "/products-solutions/personal-strategy"},
+
+        };
+    }
+    @Test(dataProvider = "clickSubmenuEvents")
+    public void testClickSubmenuAndCollapseAnalytics(String elementName, String expectedEvent,
+                                                     String expectedEventName, String expectedEventDetail) {
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
                 .clickProdAndServiceMenu()
-
+                .clickWealthManagementSubmenu()
                 .findElement(elementName)
                 .getTextOfElement()
-                .clickAndCaptureElement("navigation_click", "sub_navigation_click")
+                .clickAndCaptureElement(expectedEvent,  expectedEventName)
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
-        Assert.assertEquals(event.get("event"), "navigation_click");
-        Assert.assertEquals(event.get("event_name"), "sub_navigation_click");
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
         Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
-        Assert.assertEquals(event.get("event_detail"), "Expand");
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
     }
 
 
@@ -314,7 +295,6 @@ public class AnalyticsEventsTest extends BaseTest {
 
         };
     }
-
     @Test(dataProvider = "clickModalEvents")
     public void testClickModalAnalytics(String elementName, String expectedEvent,
                                    String expectedEventName, String expectedEventDetail) {

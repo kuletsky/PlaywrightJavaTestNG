@@ -40,10 +40,10 @@ public class BaseTest {
 
 
         // --- START TRACING ---
-        context.tracing().start(new Tracing.StartOptions()
-                .setScreenshots(true)
-                .setSnapshots(true)
-                .setSources(true));
+//        context.tracing().start(new Tracing.StartOptions()
+//                .setScreenshots(true)
+//                .setSnapshots(true)
+//                .setSources(true));
 
 
         page = context.newPage();
@@ -59,12 +59,11 @@ public class BaseTest {
 
             // --- STOP AND SAVE TRACE ---
             // Saves a zip file named after the test method
-            String tracePath = "traces/" + result.getName() + ".zip";
-            context.tracing().stop(new Tracing.StopOptions()
-                    .setPath(Paths.get(tracePath)));
+//            String tracePath = "traces/" + result.getName() + ".zip";
+//            context.tracing().stop(new Tracing.StopOptions()
+//                    .setPath(Paths.get(tracePath)));
+//            System.out.println("Trace saved to: " + tracePath);
 
-
-            System.out.println("Trace saved to: " + tracePath);
 
             context.close();
         }
