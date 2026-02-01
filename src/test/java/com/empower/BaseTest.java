@@ -8,6 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.nio.file.Paths;
+import java.util.List;
 
 public class BaseTest {
     private Playwright playwright;
@@ -40,10 +41,10 @@ public class BaseTest {
 
 
         // --- START TRACING ---
-//        context.tracing().start(new Tracing.StartOptions()
-//                .setScreenshots(true)
-//                .setSnapshots(true)
-//                .setSources(true));
+        context.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
 
 
         page = context.newPage();
@@ -58,11 +59,11 @@ public class BaseTest {
         if (context != null) {
 
             // --- STOP AND SAVE TRACE ---
-            // Saves a zip file named after the test method
-//            String tracePath = "traces/" + result.getName() + ".zip";
-//            context.tracing().stop(new Tracing.StopOptions()
-//                    .setPath(Paths.get(tracePath)));
-//            System.out.println("Trace saved to: " + tracePath);
+//             Saves a zip file named after the test method
+            String tracePath = "traces/" + result.getName() + ".zip";
+            context.tracing().stop(new Tracing.StopOptions()
+                    .setPath(Paths.get(tracePath)));
+            System.out.println("Trace saved to: " + tracePath);
 
 
             context.close();
@@ -80,8 +81,10 @@ public class BaseTest {
     }
 
     private Browser launchBrowser() {
+
         BrowserType.LaunchOptions options = new BrowserType.LaunchOptions()
                 .setHeadless(HEADLESS);
+        if (HEADLESS) options.setArgs(List.of("--headless=new"));
 
         return switch (BROWSER_TYPE.toLowerCase()) {
             case "firefox" -> playwright.firefox().launch(options);

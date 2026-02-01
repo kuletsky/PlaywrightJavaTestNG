@@ -63,6 +63,7 @@ public class AnalyticsEventsPage {
     private static final String PERSONAL_STRATEGY_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(2) [role]";
     private static final String HIGH_YIELD_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(2) > a[role='menuitem']";
     private static final String ROLLOVER_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(3) > a[role='menuitem']";
+    private static final String BENTO_BOX = "[class] [data-drupal-paragraph-name='card_v3']:nth-of-type(3) h3 p";
 
 
 
@@ -121,6 +122,7 @@ public class AnalyticsEventsPage {
             case "personalStrategyMenu" -> page.locator(PERSONAL_STRATEGY_MENU);
             case "highYieldMenu" -> page.locator(HIGH_YIELD_MENU);
             case "rolloverMenu" -> page.locator(ROLLOVER_MENU);
+            case "expectedBentoBox" -> page.locator(BENTO_BOX);
 
 
 
@@ -165,7 +167,16 @@ public class AnalyticsEventsPage {
         return this;
     }
 
+    public AnalyticsEventsPage hoverAndCaptureElement(String eventType, String eventName) {
+        capturedEvent = DataLayerUtil.hoverAndCaptureEvent(page, currentElement, eventType, eventName);
+        if (capturedEvent == null) capturedEvent = new HashMap<>();
 
+        if (elementText != null) capturedEvent.put("expectedElementText", elementText);
+//        if (elementTitle != null) capturedEvent.put("expectedElementTitle", elementTitle);
+//        if (elementLabel != null) capturedEvent.put("expectedElementLabel", elementLabel);
+
+        return this;
+    }
 
 
 

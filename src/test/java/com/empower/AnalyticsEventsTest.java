@@ -333,4 +333,114 @@ public class AnalyticsEventsTest extends BaseTest {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @DataProvider(name = "hoverMenuEvents")
+    public Object[][] hoverMenuEvents() {
+        return new Object[][]{
+//               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
+                {"wealthManagementMenu",     "navigation_hover",   "navigation_hover",         ""},
+                {"highYieldMenu",     "navigation_hover",   "navigation_hover",         ""},
+                {"rolloverMenu",     "navigation_hover",   "navigation_hover",         ""},
+
+        };
+    }
+    @Test(dataProvider = "hoverMenuEvents")
+    public void testHoverMenuAndCollapseAnalytics(String elementName, String expectedEvent,
+                                                  String expectedEventName, String expectedEventDetail) {
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickProdAndServiceMenu()
+                .findElement(elementName)
+                .getTextOfElement()
+                .hoverAndCaptureElement(expectedEvent,  expectedEventName)
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
+    }
+
+
+
+
+
+
+
+    @DataProvider(name = "hoverSubmenuEvents")
+    public Object[][] hoverSubmenuEvents() {
+        return new Object[][]{
+//               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
+//                {"wealthManagementMenu",     "navigation_click",   "sub_navigation_click",         "Expand"},
+                {"privetClientMenu",           "navigation_hover",   "navigation_hover",         ""},
+                {"personalStrategyMenu",           "navigation_hover",   "navigation_hover",         ""},
+        };
+    }
+    @Test(dataProvider = "hoverSubmenuEvents")
+    public void testHoverSubmenuAndCollapseAnalytics(String elementName, String expectedEvent,
+                                                     String expectedEventName, String expectedEventDetail) {
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickProdAndServiceMenu()
+                .clickWealthManagementSubmenu()
+                .findElement(elementName)
+                .getTextOfElement()
+                .hoverAndCaptureElement(expectedEvent,  expectedEventName)
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
+    }
+
+
+
+//    @DataProvider(name = "hoverMenuEvents")
+//    public Object[][] hoverMenuEvents() {
+//        return new Object[][]{
+////               elementName,          expectedEvent,   expectedEventName,              expectedEventDetail
+//                {"wealthManagementMenu",     "navigation_hover",   "navigation_hover",         ""},
+//                {"highYieldMenu",     "navigation_hover",   "navigation_hover",         ""},
+//                {"rolloverMenu",     "navigation_hover",   "navigation_hover",         ""},
+//
+//        };
+//    }
+//    @Test()
+//    public void testHoverBentoBoxAnalytics() {
+//        String elementName = "expectedBentoBox";
+//
+//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+////                .clickProdAndServiceMenu()
+//                .findElement(elementName)
+//                .getTextOfElement()
+//                .hoverAndCaptureElement("hover_event",  "bento_hover")
+//                .getEvent();
+//
+//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+//        Assert.assertEquals(event.get("event"), "hover_event");
+//        Assert.assertEquals(event.get("event_name"), "hover_event");
+//        Assert.assertEquals(event.get("event_category"), event.get("expectedBentoBox"));
+//        Assert.assertEquals(event.get("event_detail"), "");
+//    }
 }
