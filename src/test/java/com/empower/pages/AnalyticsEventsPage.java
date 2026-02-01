@@ -52,7 +52,7 @@ public class AnalyticsEventsPage {
     private static final String CONTACTUS_LINK = "div:nth-of-type(4) > .flex.flex-col.gap-4  .leading-6";
     private static final String LOGIN_BUTTON = "[data-once='nav-main-login-register-link click-secondary-light-button empulsify-button-ripple'] [class]";
     private static final String REGISTER_BUTTON = "[data-once='nav-main-login-register-link click-primary-button empulsify-button-ripple']";
-    private static final String PRODADNDSERV_MENU = "[aria-label='Products & Solutions']";
+    private static final String PROD_AND_SERV_MENU = "[aria-label='Products & Solutions']";
     private static final String TOOLS_MENU = "[aria-label='Tools']";
     private static final String LEARN_MENU = "[aria-label='Learn']";
     private static final String WHYEMPOWER_MENU = "[aria-label='Why Empower']";
@@ -60,6 +60,7 @@ public class AnalyticsEventsPage {
     private static final String PLANSPONSORS_MENU = "li:nth-of-type(2) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String FINANCIALPROFESS_MENU = "li:nth-of-type(3) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String EXPENDSUBMENU_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
+    private static final String WEALTH_MANAGEMENT_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
 
 
 
@@ -135,7 +136,7 @@ public class AnalyticsEventsPage {
             case "contactUsButton" -> page.locator(CONTACTUS_LINK);
             case "loginButton" -> page.locator(LOGIN_BUTTON);
             case "registerButton" -> page.locator(REGISTER_BUTTON);
-            case "ProdAndServMenu" -> page.locator(PRODADNDSERV_MENU);
+            case "ProdAndServMenu" -> page.locator(PROD_AND_SERV_MENU);
             case "ToolsMenu" -> page.locator(TOOLS_MENU);
             case "LearnMenu" -> page.locator(LEARN_MENU);
             case "WhyEmpowerMenu" -> page.locator(WHYEMPOWER_MENU);
@@ -143,6 +144,7 @@ public class AnalyticsEventsPage {
             case "PlanSponsorsMenu" -> page.locator(PLANSPONSORS_MENU);
             case "FinancialProfessMenu" -> page.locator(FINANCIALPROFESS_MENU);
             case "expendSubmenuMain" -> page.locator(EXPENDSUBMENU_MENU);
+            case "wealthManagement" -> page.locator(WEALTH_MANAGEMENT_MENU);
 
 
 
@@ -195,7 +197,6 @@ public class AnalyticsEventsPage {
     }
 
 
-
     public Map<String, Object> getEvent() {
         return capturedEvent;
     }
@@ -206,15 +207,10 @@ public class AnalyticsEventsPage {
         return this;
     }
 
-    public AnalyticsEventsPage clickExpendFAQ() {
-        page.locator(FAQ_EXPAND_CONTRACT).click();
+    public AnalyticsEventsPage clickProdAndServiceMenu() {
+        page.locator(PROD_AND_SERV_MENU).click();
 
         return this;
     }
 
-    public AnalyticsEventsPage clickPrev() {
-        page.locator(CAROUSEL_PREV).click();
-
-        return this;
-    }
 }

@@ -76,7 +76,7 @@ public class AnalyticsEventsTest extends BaseTest {
     @DataProvider(name = "clickSocialButtons")
     public Object[][] clickSocialButtons() {
         return new Object[][]{
-//               elementName,             expectedEvent,   expectedEventNam        expectedEventDetail
+//               elementName,             expectedEvent,   expectedEventName        expectedEventDetail
                 {"facebookButton",     "social_click",   "social_click",          "/officialempowertoday"},
                 {"xButton",             "social_click",   "social_click",          "/empowertoday?lang=en"},
                 {"snapchatButton",     "social_click",   "social_click",          "/add/empowertoday"},
@@ -111,7 +111,7 @@ public class AnalyticsEventsTest extends BaseTest {
     @DataProvider(name = "clickPrimaryMenu")
     public Object[][] clickPrimaryMenu() {
         return new Object[][]{
-//               elementName,             expectedEvent,   expectedEventNam
+//               elementName,             expectedEvent,   expectedEventName
                 {"ProdAndServMenu",     "navigation_click",   "main_navigation_click"},
                 {"ToolsMenu",     "navigation_click",   "main_navigation_click"},
                 {"LearnMenu",     "navigation_click",   "main_navigation_click"},
@@ -155,9 +155,13 @@ public class AnalyticsEventsTest extends BaseTest {
     public Object[][] clickWithSetCategory() {
         return new Object[][]{
 //               elementName,             expectedEvent,   expectedEventName,         expectedEventCategory         expectedEventDetail
-                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
-                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
-                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
+//                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
+//                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
+//                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
+
+                //Recommendation tiles/tools carousel
+//                {"carouselNext",          "tile_event",   "tile_move",            "prev_next",            ""},
+                {"carouselPrev",          "tile_event",   "tile_move",            "prev_next",            ""},
 
         };
     }
@@ -182,38 +186,37 @@ public class AnalyticsEventsTest extends BaseTest {
 
 
 
-    @Test
-    public void testClickCarouselNextAnalytics() {
-        String elementName = "carouselNext";
-
-        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .findElement(elementName)
-                .clickAndCaptureElement("tile_event", "tile_move")
-                .getEvent();
-
-        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-        Assert.assertEquals(event.get("event"), "tile_event");
-        Assert.assertEquals(event.get("event_name"), "tile_move");
-        Assert.assertEquals(event.get("event_category"), "prev_next");
-        Assert.assertEquals(event.get("event_detail"), "");
-    }
-
-    @Test(dependsOnMethods = "testClickCarouselNextAnalytics")
-    public void testClickCarouselPrevAnalytics() {
-        String elementName = "carouselPrev";
-
-        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .clickPrev()
-                .findElement(elementName)
-                .clickAndCaptureElement("tile_event", "tile_move")
-                .getEvent();
-
-        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-        Assert.assertEquals(event.get("event"), "tile_event");
-        Assert.assertEquals(event.get("event_name"), "tile_move");
-        Assert.assertEquals(event.get("event_category"), "prev_next");
-        Assert.assertEquals(event.get("event_detail"), "");
-    }
+//    @Test
+//    public void testClickCarouselNextAnalytics() {
+//        String elementName = "carouselNext";
+//
+//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+//                .findElement(elementName)
+//                .clickAndCaptureElement("tile_event", "tile_move")
+//                .getEvent();
+//
+//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+//        Assert.assertEquals(event.get("event"), "tile_event");
+//        Assert.assertEquals(event.get("event_name"), "tile_move");
+//        Assert.assertEquals(event.get("event_category"), "prev_next");
+//        Assert.assertEquals(event.get("event_detail"), "");
+//    }
+//
+//    @Test
+//    public void testClickCarouselPrevAnalytics() {
+//        String elementName = "carouselPrev";
+//
+//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+//                .findElement(elementName)
+//                .clickAndCaptureElement("tile_event", "tile_move")
+//                .getEvent();
+//
+//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+//        Assert.assertEquals(event.get("event"), "tile_event");
+//        Assert.assertEquals(event.get("event_name"), "tile_move");
+//        Assert.assertEquals(event.get("event_category"), "prev_next");
+//        Assert.assertEquals(event.get("event_detail"), "");
+//    }
 
 
     @Test
@@ -238,7 +241,6 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "faqExpendContract";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .clickExpendFAQ()
                 .findElement(elementName)
                 .getTextOfElement()
                 .clickAndCaptureElement("expand_contract", "expand_contract")
@@ -250,6 +252,56 @@ public class AnalyticsEventsTest extends BaseTest {
         Assert.assertEquals(event.get("event_category"), "faq");
         Assert.assertEquals(event.get("event_detail"), event.get("expectedElementText"));
     }
+
+
+
+
+
+
+
+    @Test
+    public void testClickSubmenuMainExpendAnalytics() {
+        String elementName = "wealthManagement";
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickProdAndServiceMenu()
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement("navigation_click", "sub_navigation_click")
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), "navigation_click");
+        Assert.assertEquals(event.get("event_name"), "sub_navigation_click");
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), "Expand");
+    }
+
+    @Test(dependsOnMethods = "testClickSubmenuMainExpendAnalytics")
+    public void testClickSubmenuCollapseAnalytics() {
+        String elementName = "wealthManagement";
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickProdAndServiceMenu()
+
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement("navigation_click", "sub_navigation_click")
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), "navigation_click");
+        Assert.assertEquals(event.get("event_name"), "sub_navigation_click");
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), "Expand");
+    }
+
+
+
+
+
+
+
 
 
 

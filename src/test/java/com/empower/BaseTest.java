@@ -3,8 +3,11 @@ package com.empower;
 import com.empower.utils.ConfigReader;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.LoadState;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.nio.file.Paths;
 
 public class BaseTest {
     private Playwright playwright;
@@ -35,6 +38,14 @@ public class BaseTest {
                         .setHttpCredentials(AUTH_USER, AUTH_PASS)
         );
 
+
+        // --- START TRACING ---
+        context.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
+
+
         page = context.newPage();
         page.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
@@ -43,8 +54,20 @@ public class BaseTest {
 
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        if (context != null) context.close();
+    public void tearDown(ITestResult result) {
+        if (context != null) {
+
+            // --- STOP AND SAVE TRACE ---
+            // Saves a zip file named after the test method
+            String tracePath = "traces/" + result.getName() + ".zip";
+            context.tracing().stop(new Tracing.StopOptions()
+                    .setPath(Paths.get(tracePath)));
+
+
+            System.out.println("Trace saved to: " + tracePath);
+
+            context.close();
+        }
         if (browser != null) browser.close();
         if (playwright != null) playwright.close();
     }
