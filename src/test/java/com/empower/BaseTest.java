@@ -20,6 +20,7 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         playwright = Playwright.create();
+        browser = launchBrowser();
 
 //        browser = playwright.chromium().launch(
 ////         browser = playwright.webkit().launch(
@@ -27,7 +28,6 @@ public class BaseTest {
 //                        .setHeadless(HEADLESS)
 //        );
 
-        browser = launchBrowser();
 
         context = browser.newContext(
                 new Browser.NewContextOptions()
@@ -36,7 +36,7 @@ public class BaseTest {
         );
 
         page = context.newPage();
-         page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+        page.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
         System.out.println("\nBrowser started: " + BROWSER_TYPE + (HEADLESS ? " (headless)" : ""));
     }
