@@ -38,9 +38,14 @@ public class AnalyticsEventsTest extends BaseTest {
 //                {"loginButton",             "navigation_click",   "login_register_click",          "/login-v1"},
 //                {"registerButton",             "navigation_click",   "login_register_click",          "/signup"},
 
-                {"IndividualsMenu",             "navigation_click",   "top_navigation_click",          "/home"},
-                {"PlanSponsorsMenu",             "navigation_click",   "top_navigation_click",          "/plan-sponsors"},
-                {"FinancialProfessMenu",             "navigation_click",   "top_navigation_click",          "/financial-professionals"},
+                //Main navigation - Contextual Menu
+//                {"IndividualsMenu",             "navigation_click",   "top_navigation_click",          "/home"},
+//                {"PlanSponsorsMenu",             "navigation_click",   "top_navigation_click",          "/plan-sponsors"},
+//                {"FinancialProfessMenu",             "navigation_click",   "top_navigation_click",          "/financial-professionals"},
+
+                //Main navigation - expand/collapse submenuMain navigation
+                {"expendSubmenuMain",             "navigation_click",   "sub_navigation_click",          "Expand"},
+
 
         };
     }
@@ -198,6 +203,7 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "carouselPrev";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickPrev()
                 .findElement(elementName)
                 .clickAndCaptureElement("tile_event", "tile_move")
                 .getEvent();
@@ -232,6 +238,7 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "faqExpendContract";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .clickExpendFAQ()
                 .findElement(elementName)
                 .getTextOfElement()
                 .clickAndCaptureElement("expand_contract", "expand_contract")

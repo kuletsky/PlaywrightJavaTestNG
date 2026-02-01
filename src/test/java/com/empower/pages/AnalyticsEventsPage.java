@@ -59,6 +59,7 @@ public class AnalyticsEventsPage {
     private static final String INDIVIDUALS_MENU = "[data-drupal-link-system-path='node\\/12631']";
     private static final String PLANSPONSORS_MENU = "li:nth-of-type(2) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String FINANCIALPROFESS_MENU = "li:nth-of-type(3) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
+    private static final String EXPENDSUBMENU_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
 
 
 
@@ -141,6 +142,7 @@ public class AnalyticsEventsPage {
             case "IndividualsMenu" -> page.locator(INDIVIDUALS_MENU);
             case "PlanSponsorsMenu" -> page.locator(PLANSPONSORS_MENU);
             case "FinancialProfessMenu" -> page.locator(FINANCIALPROFESS_MENU);
+            case "expendSubmenuMain" -> page.locator(EXPENDSUBMENU_MENU);
 
 
 
@@ -200,6 +202,18 @@ public class AnalyticsEventsPage {
 
     public AnalyticsEventsPage clickTextLink() {
         page.locator(LINK_TEXT).click();
+
+        return this;
+    }
+
+    public AnalyticsEventsPage clickExpendFAQ() {
+        page.locator(FAQ_EXPAND_CONTRACT).click();
+
+        return this;
+    }
+
+    public AnalyticsEventsPage clickPrev() {
+        page.locator(CAROUSEL_PREV).click();
 
         return this;
     }
