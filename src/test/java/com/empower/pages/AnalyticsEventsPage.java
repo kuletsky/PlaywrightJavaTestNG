@@ -63,7 +63,7 @@ public class AnalyticsEventsPage {
     private static final String PERSONAL_STRATEGY_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(2) [role]";
     private static final String HIGH_YIELD_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(2) > a[role='menuitem']";
     private static final String ROLLOVER_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(3) > a[role='menuitem']";
-    private static final String BENTO_BOX = "[class] [data-drupal-paragraph-name='card_v3']:nth-of-type(3) h3 p";
+    private static final String BENTO_BOX = "[class] [data-drupal-paragraph-name='card_v3']:nth-of-type(3) p";
 
 
 

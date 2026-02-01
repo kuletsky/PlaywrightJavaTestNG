@@ -426,21 +426,21 @@ public class AnalyticsEventsTest extends BaseTest {
 //
 //        };
 //    }
-//    @Test()
-//    public void testHoverBentoBoxAnalytics() {
-//        String elementName = "expectedBentoBox";
-//
-//        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-////                .clickProdAndServiceMenu()
-//                .findElement(elementName)
-//                .getTextOfElement()
-//                .hoverAndCaptureElement("hover_event",  "bento_hover")
-//                .getEvent();
-//
-//        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-//        Assert.assertEquals(event.get("event"), "hover_event");
-//        Assert.assertEquals(event.get("event_name"), "hover_event");
-//        Assert.assertEquals(event.get("event_category"), event.get("expectedBentoBox"));
-//        Assert.assertEquals(event.get("event_detail"), "");
-//    }
+    @Test()
+    public void testHoverBentoBoxAnalytics() {
+        String elementName = "expectedBentoBox";
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+//                .clickProdAndServiceMenu()
+                .findElement(elementName)
+                .getTextOfElement()
+                .hoverAndCaptureElement("hover_event",  "bento_hover")
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), "hover_event");
+        Assert.assertEquals(event.get("event_name"), "bento_hover");
+        Assert.assertEquals(event.get("event_category"), event.get("expectedElementText"));
+        Assert.assertEquals(event.get("event_detail"), "");
+    }
 }

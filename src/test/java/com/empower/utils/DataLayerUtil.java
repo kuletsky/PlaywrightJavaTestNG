@@ -97,7 +97,7 @@ public class DataLayerUtil {
         System.out.println("👆 Hover performed");
 
         // 3. Ждём подольше
-        page.waitForTimeout(1000);
+        page.waitForTimeout(2000);
 
         // 4. Проверяем что пришло
         Object allEvents = page.evaluate("() => window.__allCapturedEvents || []");
