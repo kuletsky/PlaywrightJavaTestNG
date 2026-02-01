@@ -1,6 +1,5 @@
 package com.empower.pages;
 
-import com.empower.AnalyticsEventsTest;
 import com.empower.utils.DataLayerUtil;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -16,6 +15,8 @@ public class AnalyticsEventsPage {
     private Locator currentElement;
     private Map<String, Object> capturedEvent;
     private String elementText;
+    private String elementTitle;
+
 
     private static final String PRIMARY_BUTTON = "[data-once='click-primary-button empulsify-button-ripple']";
     private static final String BRANDED_BUTTON = ".layout__region.layout__region--second .branded-btn";
@@ -82,7 +83,7 @@ public class AnalyticsEventsPage {
         return responseMap;
     }
 
-    public AnalyticsEventsPage selectElement(String elementName) {
+    public AnalyticsEventsPage findElement(String elementName) {
         currentElement = switch (elementName) {
             case "primaryButton" -> page.locator(PRIMARY_BUTTON).nth(0);
             case "primaryButton_PC" -> page.locator(PRIMARY_BUTTON).nth(1);
@@ -111,14 +112,31 @@ public class AnalyticsEventsPage {
 
             default -> throw new IllegalArgumentException("Unknown element: " + elementName);
         };
+//        elementText = currentElement.textContent().trim();
+        currentElement.getAttribute("title");
+
+        return this;
+    }
+
+    public AnalyticsEventsPage getTextOfElement() {
         elementText = currentElement.textContent().trim();
 
         return this;
     }
 
+    public AnalyticsEventsPage getTitleOfElement() {
+        elementTitle = currentElement.getAttribute("title");
+
+        return this;
+    }
+
+
     public AnalyticsEventsPage clickAndCaptureElement(String eventType, String eventName) {
         capturedEvent = DataLayerUtil.clickAndCaptureEvent(page, currentElement, eventType, eventName);
         if (capturedEvent == null) capturedEvent = new HashMap<>();
+
+        if (elementText != null) capturedEvent.put("expectedElementText", elementText);
+        if (elementTitle != null) capturedEvent.put("expectedElementTitle", elementTitle);
 
         return this;
     }

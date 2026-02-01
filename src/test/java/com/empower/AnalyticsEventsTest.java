@@ -1,7 +1,6 @@
 package com.empower;
 
 import com.empower.pages.AnalyticsEventsPage;
-import com.microsoft.playwright.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,8 +34,9 @@ public class AnalyticsEventsTest extends BaseTest {
                                    String expectedEventName, String expectedEventDetail) {
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
-                .clickAndCaptureElementWithText(expectedEvent, expectedEventName)
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement(expectedEvent, expectedEventName)
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
@@ -48,12 +48,44 @@ public class AnalyticsEventsTest extends BaseTest {
 
 
 
+
+
+    @DataProvider(name = "clickWithSetCategory")
+    public Object[][] clickWithSetCategory() {
+        return new Object[][]{
+//               elementName,             expectedEvent,   expectedEventName,         expectedEventCategory         expectedEventDetail
+                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
+                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
+                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
+
+        };
+    }
+
+    @Test(dataProvider = "clickWithSetCategory")
+    public void testClickWithSetCategoryAnalytics(String elementName, String expectedEvent,
+                                                  String expectedEventName, String expectedEventCategory, String expectedEventDetail) {
+
+        Map<String, Object> event = new AnalyticsEventsPage(getPage())
+                .findElement(elementName)
+                .clickAndCaptureElement(expectedEvent, expectedEventName)
+                .getEvent();
+
+        Assert.assertNotNull(event, "Event not captured for: " + elementName);
+        Assert.assertEquals(event.get("event"), expectedEvent);
+        Assert.assertEquals(event.get("event_name"), expectedEventName);
+        Assert.assertEquals(event.get("event_category"), expectedEventCategory);
+        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
+    }
+
+
+
+
     @Test
     public void testClickCarouselNextAnalytics() {
         String elementName = "carouselNext";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
+                .findElement(elementName)
                 .clickAndCaptureElement("tile_event", "tile_move")
                 .getEvent();
 
@@ -69,7 +101,7 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "carouselPrev";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
+                .findElement(elementName)
                 .clickAndCaptureElement("tile_event", "tile_move")
                 .getEvent();
 
@@ -86,8 +118,9 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "faqExpendContract";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
-                .clickAndCaptureElementWithText("expand_contract", "expand_contract")
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement("expand_contract", "expand_contract")
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
@@ -102,8 +135,9 @@ public class AnalyticsEventsTest extends BaseTest {
         String elementName = "faqExpendContract";
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
-                .clickAndCaptureElementWithText("expand_contract", "expand_contract")
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement("expand_contract", "expand_contract")
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
@@ -131,8 +165,9 @@ public class AnalyticsEventsTest extends BaseTest {
 
         Map<String, Object> event = new AnalyticsEventsPage(getPage())
                 .clickTextLink()
-                .selectElement(elementName)
-                .clickAndCaptureElementWithText(expectedEvent, expectedEventName)
+                .findElement(elementName)
+                .getTextOfElement()
+                .clickAndCaptureElement(expectedEvent, expectedEventName)
                 .getEvent();
 
         Assert.assertNotNull(event, "Event not captured for: " + elementName);
@@ -159,31 +194,7 @@ public class AnalyticsEventsTest extends BaseTest {
 //    }
 
 
-    @DataProvider(name = "clickWithExistCategory")
-    public Object[][] clickWithExistCategory() {
-        return new Object[][]{
-//               elementName,             expectedEvent,   expectedEventName,         expectedEventCategory         expectedEventDetail
-                {"downloadAppStore",     "button_click",   "app_store_click",         "App Store",              ""},
-                {"downloadGooglePlay",   "button_click",   "app_store_click",         "Google Play",            ""},
-                {"empowerLogo",          "social_click",   "social_click",            "Empower logo",            "/"},
 
-        };
-    }
 
-    @Test(dataProvider = "clickWithExistCategory")
-    public void testClickWithSetCategoryAnalytics(String elementName, String expectedEvent,
-                                        String expectedEventName, String expectedEventCategory, String expectedEventDetail) {
-
-        Map<String, Object> event = new AnalyticsEventsPage(getPage())
-                .selectElement(elementName)
-                .clickAndCaptureElement(expectedEvent, expectedEventName)
-                .getEvent();
-
-        Assert.assertNotNull(event, "Event not captured for: " + elementName);
-        Assert.assertEquals(event.get("event"), expectedEvent);
-        Assert.assertEquals(event.get("event_name"), expectedEventName);
-        Assert.assertEquals(event.get("event_category"), expectedEventCategory);
-        Assert.assertEquals(event.get("event_detail"), expectedEventDetail);
-    }
 
 }
