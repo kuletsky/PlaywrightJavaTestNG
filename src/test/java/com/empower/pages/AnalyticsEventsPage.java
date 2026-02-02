@@ -58,13 +58,15 @@ public class AnalyticsEventsPage {
     private static final String PLANSPONSORS_MENU = "li:nth-of-type(2) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String FINANCIALPROFESS_MENU = "li:nth-of-type(3) > .antialiased.block.dark\\:text-emp-nw-blue.font-medium.px-8.text-primary-blue.text-sm\\/4.transition-colors";
     private static final String EXPENDSUBMENU_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
-    private static final String WEALTH_MANAGEMENT_MENU = "[aria-label='Products \\& Services Secondary'] [type] .items-center";
-    private static final String PRIVET_CLIENT_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(1) [role]";
-    private static final String PERSONAL_STRATEGY_MENU = ".max-xl\\:bg-emp-blue-vapor [role='none']:nth-of-type(2) [role]";
-    private static final String HIGH_YIELD_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(2) > a[role='menuitem']";
-    private static final String ROLLOVER_MENU = "div#solutions-dropdown  nav > ul[role='menu'] > li:nth-of-type(3) > a[role='menuitem']";
-    private static final String BENTO_BOX = "[class] [data-drupal-paragraph-name='card_v3']:nth-of-type(3) p";
+    private static final String WEALTH_MANAGEMENT_MENU = "[aria-controls='dropdown-desktop-0-0']";
+    private static final String PRIVET_CLIENT_MENU = "#dropdown-desktop-0-0 [aria-label='Private Client']";
+    private static final String PERSONAL_STRATEGY_MENU = "#dropdown-desktop-0-0 [aria-label='Personal Strategy']";
+    private static final String HIGH_YIELD_MENU = "nav[aria-label='Products & Services Secondary'] [aria-label='High-yield cash account']";
+    private static final String ROLLOVER_MENU = "nav[aria-label='Products & Services Secondary'] [aria-label='Rollover']";
+    private static final String IRAS_MENU = "nav[aria-label='Products & Services Secondary'] [aria-label='IRAs']";
+    private static final String INVESTMENT_MENU = "nav[aria-label='Products & Services Secondary'] [aria-label='Investment accounts']";
 
+    private static final String BENTO_BOX = "[class] [data-drupal-paragraph-name='card_v3']:nth-of-type(3) p";
 
 
 
@@ -123,6 +125,8 @@ public class AnalyticsEventsPage {
             case "highYieldMenu" -> page.locator(HIGH_YIELD_MENU);
             case "rolloverMenu" -> page.locator(ROLLOVER_MENU);
             case "expectedBentoBox" -> page.locator(BENTO_BOX);
+            case "irasMenu" -> page.locator(IRAS_MENU);
+            case "investmentMenu" -> page.locator(INVESTMENT_MENU);
 
 
 

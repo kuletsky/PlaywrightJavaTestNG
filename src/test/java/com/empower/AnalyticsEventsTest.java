@@ -223,6 +223,8 @@ public class AnalyticsEventsTest extends BaseTest {
                 {"wealthManagementMenu",     "navigation_click",   "sub_navigation_click",         "Expand"},
                 {"highYieldMenu",     "navigation_click",   "navigation_click",         "/cash"},
                 {"rolloverMenu",     "navigation_click",   "navigation_click",         "/products-solutions/rollover"},
+                {"irasMenu",     "navigation_click",   "navigation_click",         "/products-solutions/iras"},
+                {"investmentMenu",     "navigation_click",   "navigation_click",         "/products-solutions/investment-accounts"},
 
         };
     }
